@@ -1,16 +1,10 @@
-function setup() {
-  createCanvas(400, 400);
-}
-
-function draw() {
-  background(220);
-}
 let jogador;
 let objetos = [];
 let pontos = 0;
 let vida = 3;
 let frutas = ['🍎', '🍌', '🍓', '🍊'];
 let lixos = ['🗑️', '🪣', '♻️'];
+let inicio = true;  // Variável para saber se estamos na tela de introdução
 
 function setup() {
   createCanvas(600, 400);
@@ -19,6 +13,27 @@ function setup() {
 }
 
 function draw() {
+  if (inicio) {
+    mostrarTelaInicio();
+  } else {
+    jogo();
+  }
+}
+
+function mostrarTelaInicio() {
+  background(180, 230, 180);
+  
+  fill(0);
+  textSize(30);
+  text("Bem-vindo ao Jogo!", width / 2, height / 4);
+  textSize(20);
+  text("Instruções:", width / 2, height / 3);
+  textSize(16);
+  text("Pegue as frutas 🍎🍌🍓🍊 e evite o lixo 🗑️🪣♻️!", width / 2, height / 2);
+  text("Pressione qualquer tecla para começar", width / 2, height * 0.75);
+}
+ //Emojis retirados do chat GPT!!!!
+function jogo() {
   background(180, 230, 180);
 
   // Mostrar pontuação e vida
@@ -55,6 +70,13 @@ function draw() {
     fill(0);
     textSize(36);
     text("Fim de Jogo! Pontuação: " + pontos, width / 2, height / 2);
+  }
+}
+
+function keyPressed() {
+  if (inicio) {
+    inicio = false;  // Começar o jogo quando qualquer tecla for pressionada
+    loop();  // Iniciar o loop do jogo
   }
 }
 
